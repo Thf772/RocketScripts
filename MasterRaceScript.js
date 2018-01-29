@@ -63,7 +63,6 @@
         flipTable[flipTable[i]] = i;
     }
 
-    // Your code here...
     {
         let call=Meteor.call;
        
@@ -90,7 +89,7 @@
 
                         arguments[1].msg=flipString(arguments[1].msg.substr(1));
                     }
-                    arguments[1].msg="_"+arguments[1].msg+"_";
+                    //arguments[1].msg="_"+arguments[1].msg+"_";
                 }
 
              
