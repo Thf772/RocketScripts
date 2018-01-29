@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name         New Userscript
+// @name         RocketScripts
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.2
 // @description  try to take over the world!
 // @author       You
 // @match        https://chat.clubelek.fr/*
@@ -59,11 +59,39 @@
         '\u2234' : '\u2235',
         '\r' : '\n'
     };
+	var emojitable = {};
+	function fillEmoTable(emojis) {
+		for (var i = 0; i < emojis.length; i++) {
+			if (!(emojis[i].name[0] in emojitable)){
+				emojitable[emojis[i].name[0]] = [];
+			}
+			emojitable[emojis[i].name[0]].push(":" + emojis[i].name + ":");
+			for (var j = 0; j < emojis[i].aliases.length; j++) {
+				if (!(emojis[i].aliases[j][0] in emojitable)){
+					emojitable[emojis[i].aliases[j][0]] = [];
+				}
+				emojitable[emojis[i].aliases[j][0]].push(":" + emojis[i].aliases[j] + ":");
+			}
+		}
+	}
+	function emojify(msg) {
+		var res = [], wrk = msg.toLowerCase();
+		for (var i = 0; i < wrk.length; i++) {
+			if (wrk.charCodeAt(i) >= 0x61 && wrk.charCodeAt(i) <= 0x7A) {
+				if (wrk[i] in emojitable) {
+					res.push(emojitable[wrk[i]][Math.floor(Math.random() * emojitable[wrk[i]].length)] + ' ');
+				} else res.push(wrk[i] + ' ');
+			} else if (wrk.charCodeAt(i) >= 0x30 && wrk.charCodeAt(i) <= 0x39) res.push(wrk[i] + ' ');
+			else if (wrk[i] === ' ') res.push('   ');
+			else res.push(wrk[i]);
+		}
+		return res.join('');
+	}
+	(function(){Meteor.call('listEmojiCustom',(err,emojis)=>{fillEmoTable(emojis);});})();
     for (var i in flipTable) {
         flipTable[flipTable[i]] = i;
     }
 
-    // Your code here...
     {
         let call=Meteor.call;
        
@@ -82,7 +110,9 @@
                         arguments[1].msg=flipString(arguments[1].msg.substr(1));
                     }
 
-                }
+                } else if (arguments[1].msg.substr(0,2) === '&&') {
+					arguments[1].msg=emojify(arguments[1].msg.substr(2));
+				}
                 else
                 {
                     if(arguments[1].msg[0]===".")
@@ -90,7 +120,7 @@
 
                         arguments[1].msg=flipString(arguments[1].msg.substr(1));
                     }
-                    arguments[1].msg="_"+arguments[1].msg+"_";
+                    //arguments[1].msg="_"+arguments[1].msg+"_";
                 }
 
              
