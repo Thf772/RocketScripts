@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name         New Userscript
+// @name         RocketScripts
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.2
 // @description  try to take over the world!
 // @author       You
 // @match        https://chat.clubelek.fr/*
