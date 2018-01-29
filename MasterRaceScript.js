@@ -82,6 +82,7 @@
 					res.push(emojitable[wrk[i]][Math.floor(Math.random() * emojitable[wrk[i]].length)] + ' ');
 				} else res.push(wrk[i] + ' ');
 			} else if (wrk.charCodeAt(i) >= 0x30 && wrk.charCodeAt(i) <= 0x39) res.push(wrk[i] + ' ');
+			else if (wrk[i] === ' ') res.push('   ');
 			else res.push(wrk[i]);
 		}
 		return res.join('');
