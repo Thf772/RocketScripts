@@ -59,6 +59,22 @@
         '\u2234' : '\u2235',
         '\r' : '\n'
     };
+	var emojitable = {};
+	function fillEmoTable(emojis) {
+		for (var i = 0; i < emojis.length; i++) {
+			if (!(emojis[i].name[0] in emojitable)){
+				emojitable[emojis[i].name[0]] = [];
+			}
+			emojitable[emojis[i].name[0]].push(":" + emojis[i].name + ":");
+			for (var j = 0; j < emojis[i].aliases.length; j++) {
+				if (!(emojis[i].aliases[j][0] in emojitable)){
+					emojitable[emojis[i].aliases[j][0]] = [];
+				}
+				emojitable[emojis[i].aliases[j][0]].push(":" + emojis[i].name + ":");
+			}
+		}
+	}
+	(function(){Meteor.call('listEmojiCustom',(err,emojis)=>{fillEmoTable(emojis);});})();
     for (var i in flipTable) {
         flipTable[flipTable[i]] = i;
     }
