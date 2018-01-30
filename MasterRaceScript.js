@@ -62,15 +62,15 @@
 	var emojitable = {};
 	function fillEmoTable(emojis) {
 		for (var i = 0; i < emojis.length; i++) {
-			if (!(emojis[i].name[0] in emojitable)){
-				emojitable[emojis[i].name[0]] = [];
+			if (!(emojis[i].name[0].toLowerCase() in emojitable)){
+				emojitable[emojis[i].name[0].toLowerCase()] = [];
 			}
-			emojitable[emojis[i].name[0]].push(":" + emojis[i].name + ":");
+			emojitable[emojis[i].name[0].toLowerCase()].push(":" + emojis[i].name + ":");
 			for (var j = 0; j < emojis[i].aliases.length; j++) {
-				if (!(emojis[i].aliases[j][0] in emojitable)){
-					emojitable[emojis[i].aliases[j][0]] = [];
+				if (!(emojis[i].aliases[j][0].toLowerCase() in emojitable)){
+					emojitable[emojis[i].aliases[j][0].toLowerCase()] = [];
 				}
-				emojitable[emojis[i].aliases[j][0]].push(":" + emojis[i].aliases[j] + ":");
+				emojitable[emojis[i].aliases[j][0].toLowerCase()].push(":" + emojis[i].aliases[j] + ":");
 			}
 		}
 	}
