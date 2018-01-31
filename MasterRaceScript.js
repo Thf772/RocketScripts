@@ -119,4 +119,11 @@
 			call(...arguments);
 		};
 	}
+	Template.message.onCreated(function() { 
+		let msg=Template.currentData();
+		var matches=(msg.msg||'').match(/\:(\w+)\:/g);
+		if((matches||[]).length>5) {
+			this.body='<span style="color: blue">'+matches.map(e=>e.charAt(1)).join('')+'</span><br/>'+this.body;
+		}
+	});
 })();
