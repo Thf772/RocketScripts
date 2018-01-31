@@ -110,6 +110,14 @@
 					{
 						arguments[1].msg="!reload";
 					}
+					if(arguments[1].msg[1]==="d")
+					{
+						arguments[1].msg="!duckstats";
+					}
+					if(arguments[1].msg[1]==="l")
+					{
+						arguments[1].msg="!lastduck";
+					}
 				} else if (arguments[1].msg.substr(0,2) === '&&') {
 					arguments[1].msg=emojify(arguments[1].msg.substr(2));
 				}
