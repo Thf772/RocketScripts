@@ -108,8 +108,8 @@
 					arguments[1].msg="!duckstats";
 				} else if(arguments[1].msg==="!l") {
 					arguments[1].msg="!lastduck";
-				} else if(arguments[1].msg[0]==".") {
-					arguments[1].msg=flipString(arguments[1].msg.substr(1));
+				} else if(arguments[1].msg.substr(0,2)=="²²") {
+					arguments[1].msg=flipString(arguments[1].msg.substr(2));
 				} else if (arguments[1].msg.substr(0,2) === '&&') {
 					arguments[1].msg=emojify(arguments[1].msg.substr(2));
 				}
