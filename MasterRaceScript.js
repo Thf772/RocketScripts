@@ -98,26 +98,20 @@
 		Meteor.call=function(type) {
 			if(type=='sendMessage') {
 				//console.log(arguments);
-				if(arguments[1].msg[0]==".")
-				{
-					arguments[1].msg=flipString(arguments[1].msg.substr(1));
-				} else if (arguments[1].msg[0]==='!') {
-					if(arguments[1].msg[1]==="b")
-					{
+				if (arguments[1].msg[0]==='!') {
+					if(arguments[1].msg[1]==="b") {
 						arguments[1].msg="!bang";
-					} else if(arguments[1].msg[1]==="r")
-					{
+					} else if(arguments[1].msg[1]==="r") {
 						arguments[1].msg="!reload";
-					} else if(arguments[1].msg[1]==="s")
-					{
+					} else if(arguments[1].msg[1]==="s") {
 						arguments[1].msg="!shop " + arguments[1].msg.substr(2);
-					} else if(arguments[1].msg[1]==="d")
-					{
+					} else if(arguments[1].msg[1]==="d") {
 						arguments[1].msg="!duckstats";
-					} else if(arguments[1].msg[1]==="l")
-					{
+					} else if(arguments[1].msg[1]==="l") {
 						arguments[1].msg="!lastduck";
 					}
+				} else if(arguments[1].msg[0]==".") {
+					arguments[1].msg=flipString(arguments[1].msg.substr(1));
 				} else if (arguments[1].msg.substr(0,2) === '&&') {
 					arguments[1].msg=emojify(arguments[1].msg.substr(2));
 				}
