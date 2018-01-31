@@ -1,11 +1,11 @@
 // ==UserScript==
-// @name		 RocketScripts
-// @namespace	http://tampermonkey.net/
-// @version	  0.2
+// @name         RocketScripts
+// @namespace    http://tampermonkey.net/
+// @version      0.2
 // @description  try to take over the world!
-// @author	   You
-// @match		https://chat.clubelek.fr/*
-// @grant		none
+// @author       You
+// @match        https://chat.clubelek.fr/*
+// @grant        none
 // ==/UserScript==
 
 (function() {
