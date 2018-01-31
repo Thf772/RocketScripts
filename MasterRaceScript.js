@@ -62,15 +62,15 @@
 	var emojitable = {};
 	function fillEmoTable(emojis) {
 		for (var i = 0; i < emojis.length; i++) {
-			if (!(emojis[i].name[0].toLowerCase() in emojitable)){
-				emojitable[emojis[i].name[0].toLowerCase()] = [];
+			if (!(emojis[i].name[0] in emojitable)){
+				emojitable[emojis[i].name[0]] = [];
 			}
-			emojitable[emojis[i].name[0].toLowerCase()].push(":" + emojis[i].name + ":");
+			emojitable[emojis[i].name[0]].push(":" + emojis[i].name + ":");
 			for (var j = 0; j < emojis[i].aliases.length; j++) {
-				if (!(emojis[i].aliases[j][0].toLowerCase() in emojitable)){
-					emojitable[emojis[i].aliases[j][0].toLowerCase()] = [];
+				if (!(emojis[i].aliases[j][0] in emojitable)){
+					emojitable[emojis[i].aliases[j][0]] = [];
 				}
-				emojitable[emojis[i].aliases[j][0].toLowerCase()].push(":" + emojis[i].aliases[j] + ":");
+				emojitable[emojis[i].aliases[j][0]].push(":" + emojis[i].aliases[j] + ":");
 			}
 		}
 	}
@@ -98,18 +98,16 @@
 		Meteor.call=function(type) {
 			if(type=='sendMessage') {
 				//console.log(arguments);
-				if (arguments[1].msg[0]==='!') {
-					if(arguments[1].msg[1]==="b") {
-						arguments[1].msg="!bang";
-					} else if(arguments[1].msg[1]==="r") {
-						arguments[1].msg="!reload";
-					} else if(arguments[1].msg[1]==="s") {
-						arguments[1].msg="!shop " + arguments[1].msg.substr(2);
-					} else if(arguments[1].msg[1]==="d") {
-						arguments[1].msg="!duckstats";
-					} else if(arguments[1].msg[1]==="l") {
-						arguments[1].msg="!lastduck";
-					}
+				if(arguments[1].msg==="!b") {
+					arguments[1].msg="!bang";
+				} else if(arguments[1].msg==="!r") {
+					arguments[1].msg="!reload";
+				} else if(arguments[1].msg.substr(0,2)==="!s"&&arguments[1].msg[2]!=='h') {
+					arguments[1].msg="!shop " + arguments[1].msg.substr(2);
+				} else if(arguments[1].msg==="!d") {
+					arguments[1].msg="!duckstats";
+				} else if(arguments[1].msg==="!l") {
+					arguments[1].msg="!lastduck";
 				} else if(arguments[1].msg[0]==".") {
 					arguments[1].msg=flipString(arguments[1].msg.substr(1));
 				} else if (arguments[1].msg.substr(0,2) === '&&') {
