@@ -106,6 +106,10 @@
 					{
 						arguments[1].msg="!bang";
 					}
+					if(arguments[1].msg[1]==="r")
+					{
+						arguments[1].msg="!reload";
+					}
 				} else if (arguments[1].msg.substr(0,2) === '&&') {
 					arguments[1].msg=emojify(arguments[1].msg.substr(2));
 				}
