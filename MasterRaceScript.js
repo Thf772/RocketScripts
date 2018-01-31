@@ -118,6 +118,10 @@
 					{
 						arguments[1].msg="!lastduck";
 					}
+					if(arguments[1].msg[1]==="s")
+					{
+						arguments[1].msg="!shop " + arguments[1].msg.substr(2);
+					}
 				} else if (arguments[1].msg.substr(0,2) === '&&') {
 					arguments[1].msg=emojify(arguments[1].msg.substr(2));
 				}
