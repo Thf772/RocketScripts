@@ -112,7 +112,9 @@
 					arguments[1].msg=flipString(arguments[1].msg.substr(2));
 				} else if (arguments[1].msg.substr(0,2) === '&&') {
 					arguments[1].msg=emojify(arguments[1].msg.substr(2));
-				}
+				} else if (arguments[1].msg === '**') {
+          arguments[1].msg='';
+        }
 			}
 			call(...arguments);
 		};
